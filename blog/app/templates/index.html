@@ -1,0 +1,31 @@
+{% extends "auth/base.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Bienvenido a tu Blog</h1>
+
+    {% if current_user.is_authenticated %}
+        <p>Hola, {{ current_user.username }}!</p>
+        <a href="{{ url_for('main.create_post') }}" class="btn btn-primary">Crear Nueva Publicación</a>
+        <h2>Tus Publicaciones</h2>
+        <ul>
+            {% for post in current_user.posts %}
+                <li>
+                    <h3>{{ post.title }}</h3>
+                    <p>{{ post.content }}</p>
+                    {% if post.image_url %}
+                        <img src="{{ post.image_url }}" alt="{{ post.title }}" style="max-width: 100%; height: auto;">
+                    {% endif %}
+                    <small>Publicado el {{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Inicia sesión para crear y ver tus publicaciones.</p>
+        <a href="{{ url_for('main.login') }}" class="btn btn-primary">Iniciar Sesión</a>
+        <a href="{{ url_for('main.register') }}" class="btn btn-secondary">Registrarse</a>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,116 @@
+/* Inline styles for matching the uploaded design */
+body {
+    background-color: #f3f6f9;
+    font-family: Arial, sans-serif;
+}
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 2px solid #eeeeee;
+}
+.navbar-nav .nav-link {
+    color: #333333;
+    margin-right: 15px;
+}
+
+/* Estilos para el contenedor principal */
+.container {
+    width: 80%;
+    margin: 0 auto; 
+    padding-top: 20px;
+}
+
+/* Estilo para el título central */
+.text-center h1 {
+    color: #333; 
+}
+
+
+.form-control-search {
+    border: 2px solid #007BFF; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    border-radius: 50px 0 0 50px; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    height: 50px; 
+}
+
+/* Estilos para el botón de búsqueda */
+.btn-primary-search {
+    border: none; 
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white; 
+    padding: 10px 20px; 
+    border-radius: 0 50px 50px 0; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    font-weight: bold; 
+    transition: background-color 0.3s ease; 
+}
+
+/* Estilo hover para el botón que intensifica el color al pasar el ratón */
+.btn-primary-search:hover {
+    background-color: #ffffff; 
+}
+
+/* Estilos responsivos para móviles */
+@media (max-width: 768px) {
+    .container {
+        width: 90%; 
+    }
+    .form-control, .btn-primary {
+        border-radius: 50px;
+    }
+}
+.table-custom {
+    background-color: #f8f9fa;
+    border-collapse: collapse;
+    width: 100%;
+    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+   
+}
+.table-custom th, .table-custom td {
+    border: 1px solid #dee2e6;
+    text-align: left;
+    padding: 8px;
+}
+.table-custom th {
+   background: linear-gradient(to top, #6a11cb, #2575fc); padding: 1rem;
+    color: white;
+}
+.table-custom tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.sticky-nav {
+    position: sticky; /* Hace que el navbar sea sticky */
+    top: 0;           /* Se pegará al borde superior */
+    z-index: 1000;    /* Asegura que quede por encima del contenido */
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Mantén el estilo del fondo */
+    padding: 1rem;    /* Espaciado interno */
+}
+/* Asegúrate de que el contenedor de la publicación esté posicionado relativamente */
+.list-group-item {
+    position: relative; /* Posicionamiento relativo al elemento padre */
+}
+
+.post-content-area {
+    flex-grow: 1; /* Ocupa todo el espacio disponible excepto lo que necesiten los controles */
+}
+
+.post-controls {
+    display: flex;
+    flex-direction:row-reverse; /* Apilar los botones verticalmente */
+    align-items: flex-end; /* Alinea los controles hacia la derecha */
+    padding: 20px; /* Espacio alrededor de los controles */
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.edit-link {
+    margin-top: 10px; /* Espacio entre los botones */
+}
+

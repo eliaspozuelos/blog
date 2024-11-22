@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>My Blog</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<!-- Navbar -->
+<nav class=" navbar navbar-expand-lg navbar-light bg-light sticky-nav" style=" background: linear-gradient(to right, #6a11cb, #2575fc); padding: 1rem;">
+    <a class="navbar-brand text-white" href="{{ url_for('main.index') }}"> <i class="fas fa-blog"></i> My Blog</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style=" 
+            border-color: #ffffff; ">
+        <span class="navbar-toggler-icon text-white"></span>
+    </button>
+    <div class="collapse navbar-collapse navbar-light" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            {% if current_user.is_authenticated %}
+                <li class="nav-item ">
+                    <a class="nav-link text-white " href="#"><i class="fas fa-user"></i> Usuario {{ current_user.username }}</a>
+                </li>
+                {% if current_user.role == 'admin' %}
+                <!-- Opciones específicas para administradores -->
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ url_for('main.send_notification') }}"> <i class="fas fa-bell"></i> Crear Notificación</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ url_for('main.view_adm') }}"> <i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ url_for('main.create_post') }}"> <i class="fas fa-plus-circle"></i> Crear</a>
+                </li>
+               
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ url_for('main.list_posts') }}"> <i class="fas fa-blog"></i> Blog</a>
+                </li>
+                
+                
+            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link text-white" href="{{ url_for('main.logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ url_for('main.login') }}"><i class="fas fa-sign-in-alt"></i> Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ url_for('main.register') }}"> <i class="fas fa-user-plus"></i> Register</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<!-- Mensajes Flash -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+    <div class="container mt-4">
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endwith %}
+
+<!-- Main Content -->
+<div class="container ">
+    {% block content %}
+    <div class="text-center">
+        <h1 class="mb-4">Buscar Usuarios</h1>
+        <form method="POST" action="{{ url_for('main.search_users') }}">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control-search form-control" name="search" placeholder="Escribe un nombre de usuario..." required>
+                <div class="input-group-append">
+                    <button class="btn btn-primary-search" type="submit">Buscar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% endblock %}
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="{{ url_for('static', filename='js/btns.js') }}"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

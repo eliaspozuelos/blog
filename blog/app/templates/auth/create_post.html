@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Create a New Post{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card shadow">
+        <div class="card-header text-center jumbotron text-white" style="background: linear-gradient(to right, #6a11cb, #2575fc); padding: 2rem;">
+            <h2>Crear Nueva Publicacion <i class="fa-regular fa-square-plus"></i></h2>
+        </div>
+        <div class="card-body">
+            <form method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="title">Titulo</label>
+                    <input type="text" class="form-control" name="title" id="title" required>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="content">Contenido</label>
+                    <textarea class="form-control" name="content" id="content" rows="5" required></textarea>
+                </div>
+                <!-- Previsualización de la imagen -->
+                <div class="form-group text-center mt-3">
+                    <img id="imagePreview" src="#" alt="Image Preview" 
+                         style="display: none; max-width: 100%; height: auto; margin-bottom: 20px;"/>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="image">Image</label>
+                    <input type="file" class="form-control" name="image" id="image" accept="image/*">
+                </div>
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg">Publicar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Enlace al archivo JavaScript -->
+<script src="{{ url_for('static', filename='js/upload-img.js') }}"></script>
+
+{% endblock %}
